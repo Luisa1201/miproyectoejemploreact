@@ -9,12 +9,10 @@ function App() {
   const [view, setView] = useState("login"); 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  //  cuando el login sea correcto
   const handleLoginSuccess = () => {
     setIsAuthenticated(true);
   };
 
-  // logout opcional
   const handleLogout = () => {
     setIsAuthenticated(false);
     setView("login");
@@ -30,7 +28,7 @@ function App() {
         <LoginPage
           onRegisterClick={() => setView("register")}
           onForgotClick={() => setView("forgot")}
-          onLoginSuccess={handleLoginSuccess} // se pasa al login
+          onLoginSuccess={handleLoginSuccess}
         />
       )}
 

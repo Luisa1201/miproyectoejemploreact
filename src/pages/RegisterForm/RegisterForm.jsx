@@ -4,8 +4,8 @@ import { Link, useNavigate} from "react-router-dom"
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { setDoc } from "firebase/firestore";
-import { db } from "../../firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from "../../firebase";
 
 function RegisterForm({ onBackToLogin }) {
   const navigate = useNavigate();
@@ -58,6 +58,11 @@ function RegisterForm({ onBackToLogin }) {
       Swal.fire("Registrado", "Usuario creado con éxito", "success");
       navigate("/")
     }catch (error){
+      console.error("Error de registro", error);
+
+      if(error.code === "auth/email-already-in-use"){
+        Swal.fire("Correo en uso", "Debe ingresar error", "error");
+      }
 
     }
   }
@@ -69,7 +74,13 @@ function RegisterForm({ onBackToLogin }) {
       <form onSubmit={handleSubmit} className="register-form">
         <input type="text" placeholder="Nombre completo" required value={formData.nombres} onChange={handleChange}/>
         <input type="email" placeholder="Correo electrónico" required value={formData.correo} onChange={handleChange} />
-        <input type="password" placeholder="Contraseña" required value={formData.password} onChange={handleChange}/>
+        
+        <input type={showPassword ? "text" :"password"}
+        name="password"
+        placeholder="Contraseña" 
+        required value={formData.password} 
+        onChange={handleChange}/>
+
         <input type="password" placeholder="Confirmar contraseña" required value={formData.confirmPassword} onChange={handleChange}/>
         <button type="submit">Crear cuenta</button>
       </form>
