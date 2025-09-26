@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterForm from "./pages/RegisterForm/RegisterForm";
@@ -6,40 +6,17 @@ import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
 import Dashboard from "./pages/Dashboard/Dashboard"; 
 
 function App() {
-  const [view, setView] = useState("login"); 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const handleLoginSuccess = () => {
-    setIsAuthenticated(true);
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    setView("login");
-  };
-
-  if (isAuthenticated) {
-    return <Dashboard onLogout={handleLogout} />; 
-  }
 
   return (
-    <div className="App">
-      {view === "login" && (
-        <LoginPage
-          onRegisterClick={() => setView("register")}
-          onForgotClick={() => setView("forgot")}
-          onLoginSuccess={handleLoginSuccess}
-        />
-      )}
-
-      {view === "register" && (
-        <RegisterForm onBackToLogin={() => setView("login")} />
-      )}
-
-      {view === "forgot" && (
-        <ForgotPassword onBackToLogin={() => setView("login")} />
-      )}
-    </div>
+   <BrowserRouter>
+   <Routes>
+    <Route path="/" element={<LoginPage />} />
+    <Route path='/loginPage' element={<LoginPage/>}></Route>
+    <Route path='/registerForm' element={<RegisterForm/>}></Route>
+    <Route path='/forgotPassword' element={<ForgotPassword/>}></Route>
+    <Route path='/dashboard' element={<Dashboard/>}></Route>
+   </Routes>
+   </BrowserRouter>
   );
 }
 

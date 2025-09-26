@@ -2,20 +2,7 @@ import React, { useState } from "react";
 import { FaGoogle, FaGithub, FaFacebook } from "react-icons/fa";
 import "./LoginPage.css";
 
-function LoginPage({ onRegisterClick, onForgotClick, onLoginSuccess }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    //  Validación básica de usuario demo
-    if (email === "luda@gmail.com" && password === "1234") {
-      onLoginSuccess(); // pasa al dashboard
-    } else {
-      alert("Correo o contraseña incorrectos");
-    }
-  };
+function LoginPage() {
 
   return (
     <div className="login-body">
@@ -29,29 +16,25 @@ function LoginPage({ onRegisterClick, onForgotClick, onLoginSuccess }) {
         <h2>¡Bienvenido!</h2>
       </div>
 
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form className="login-form">
         <input 
           type="email" 
           placeholder="Correo electrónico" 
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
           required 
         />
         <input 
           type="password" 
           placeholder="Contraseña"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
           required 
         />
         <button type="submit" className="login-btn">Ingresar</button>
       </form>
 
       <p className="forgot-password">
-        <span className="forgot-link" onClick={onForgotClick}>
-          ¿Olvidaste tu contraseña?
-        </span>
-      </p>
+          <a href="/forgotPassword" className="forgot-link">
+            ¿Olvidaste tu contraseña?
+          </a>
+        </p>
 
       <div className="social-login">
         <p>O ingresa con</p>
@@ -70,7 +53,7 @@ function LoginPage({ onRegisterClick, onForgotClick, onLoginSuccess }) {
 
       <p className="auth-text">
         ¿No tienes cuenta?{" "}
-        <button type="button" className="register-btn" onClick={onRegisterClick}>
+        <button type="button" className="register-btn" onClick={() => window.location.href = "/registerForm"}>
           Regístrate
         </button>
       </p>

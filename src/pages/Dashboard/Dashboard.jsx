@@ -5,7 +5,7 @@ import Footer from "../ComponentFooter/Footer"
 import Header from "../ComponentHeader/Header"
 import Sidebar from "../ComponentSidebar/Sidebar"
 
-const Dashboard = ({onLogout}) => {
+const Dashboard = () => {
   return (
     <div className="dashboard-container">
         <Sidebar/>

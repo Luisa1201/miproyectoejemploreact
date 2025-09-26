@@ -1,7 +1,7 @@
 import React from "react";
 import "./ForgotPassword.css";
 
-function ForgotPassword({ onBackToLogin }) {
+function ForgotPassword() {
   return (
     <div className="forgot-body">
     <div className="forgot-container">
@@ -15,7 +15,7 @@ function ForgotPassword({ onBackToLogin }) {
       </form>
 
       <p className="auth-text">
-        <button type="button" className="back-btn" onClick={onBackToLogin}>
+        <button type="button" className="back-btn" onClick={() => window.location.href = "/loginPage"}>
           Volver al inicio de sesión
         </button>
       </p>

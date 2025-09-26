@@ -139,3 +139,38 @@
     padding: 14px;
   }
 }
+
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-container input {
+  width: 100%;
+  padding: 18px 50px 18px 20px; /* deja espacio a la derecha para el ojito */
+  border: 1px solid #a0dcdc;
+  border-radius: 14px;
+  font-size: 17px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Botón ojito dentro del input */
+.toggle-password {
+  position: absolute;
+  top: 0%;
+  right: 0px;              /* pegado al borde derecho */
+  background: none;         /* sin fondo */
+  border: none;             /* sin borde */
+  cursor: pointer;
+  font-size: 20px;          /* tamaño del ícono */
+  color: #666;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-password:hover {
+  color: #000;
+}
